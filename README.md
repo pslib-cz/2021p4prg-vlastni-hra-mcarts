@@ -1,2 +1,2 @@
-# Studio McArts uvádí…
-No, až to vymyslíme :)
+# Magic Hop Game by McA
+* Magická skákačka
