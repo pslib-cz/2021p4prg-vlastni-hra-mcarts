@@ -67,7 +67,7 @@ TextureImporter:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
-    resizeAlgorithm: 1
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
@@ -130,8 +130,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb3514db9f6470e4ead5b7e77e2bdc91
-      internalID: 1943025543
+      spriteID: fef8d1c02af741a49895109f4709856a
+      internalID: -1247197120
       vertices: []
       indices: 
       edges: []
@@ -151,8 +151,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f8b7a1a497ce1964dbf894ec6df626b8
-      internalID: 1831730133
+      spriteID: 9bd1e36219376954792fe73cb43c9cd3
+      internalID: -1180164068
       vertices: []
       indices: 
       edges: []
@@ -172,8 +172,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 945f9199f0955b94a978f64906a797a1
-      internalID: 1331334696
+      spriteID: dbf5f3443510cda449845f51abba7632
+      internalID: -1160875036
       vertices: []
       indices: 
       edges: []
@@ -193,8 +193,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: caf8543e7ac9736448633f3e225554fb
-      internalID: 33024061
+      spriteID: d70d069c47edd10429db7792d260ac77
+      internalID: -809296974
       vertices: []
       indices: 
       edges: []
@@ -214,8 +214,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 53906e044b43ea8409ff596bce4ee0ed
-      internalID: 1035318001
+      spriteID: 605f3ee5d11f5cf4783f6013e73b3cbc
+      internalID: 1461789966
       vertices: []
       indices: 
       edges: []
@@ -235,8 +235,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ceed38734b5acd49ae3e5a51f360cf8
-      internalID: 740237105
+      spriteID: c1bac2face393c847a847137e2c846b0
+      internalID: 2143870805
       vertices: []
       indices: 
       edges: []
@@ -252,12 +252,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      test_blocks_3: 33024061
-      test_blocks_1: 1831730133
-      test_blocks_0: 1943025543
-      test_blocks_2: 1331334696
-      test_blocks_5: 740237105
-      test_blocks_4: 1035318001
+      test_blocks_3: -809296974
+      test_blocks_1: -1180164068
+      test_blocks_0: -1247197120
+      test_blocks_2: -1160875036
+      test_blocks_5: 2143870805
+      test_blocks_4: 1461789966
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
