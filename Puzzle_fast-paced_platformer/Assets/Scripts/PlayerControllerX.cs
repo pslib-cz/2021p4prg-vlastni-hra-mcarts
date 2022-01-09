@@ -1,3 +1,4 @@
+using Assets.Scripts.Models;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,32 +24,57 @@ public class PlayerControllerX : MonoBehaviour
 
     private bool isFlippedRight;
     private bool isGrounded;
-
+    private bool isMoving;
     private float horizontalX;
     private Rigidbody2D rb;
+    [SerializeField] GameObject PickUp;
 
-    private void Awake()
+    private QuestionController qc;
+    private GameManager _gameManager;
+    private PlayerActions inRange = PlayerActions.None;
+
+    
+
+
+
+    private void Start()
     {
-
+        _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        qc = GameObject.Find("Canvas").GetComponent<QuestionController>();
         rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
-        horizontalX = Input.GetAxisRaw("Horizontal");
-        Jump();
+        if (inRange == PlayerActions.PickUp)
+        {
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+
+                qc.SeeQuestion(PickUp.GetComponent<Collider2D>(), PickUp);
+            }
+        }
+        if (!_gameManager.isOver)
+        {
+            horizontalX = Input.GetAxisRaw("Horizontal");
+            Jump();
+        }
+
     }
     private void FixedUpdate()
     {
-        Movement();
-        NormalizeSlope();
-        //hit = Physics2D.Raycast(transform.position, -transform.up, 3);
-        //rb.velocity = new Vector3(hit.normal.y, -hit.normal.x, 0);
-
+        if (!_gameManager.isOver)
+        {
+            Movement();
+            NormalizeSlope();
+            //hit = Physics2D.Raycast(transform.position, -transform.up, 3);
+            //rb.velocity = new Vector3(hit.normal.y, -hit.normal.x, 0);
+        }
     }
 
     void NormalizeSlope()
     {
+
         // Attempt vertical normalization
         if (isGrounded)
         {
@@ -88,13 +114,13 @@ public class PlayerControllerX : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.Space) && groundedRemember > 0)
         {
-            
-                if (rb.velocity.y > 0)
-                {
-                    rb.velocity = new Vector2(rb.velocity.x, jumpForce * cutHeight);
 
-                }
-            
+            if (rb.velocity.y > 0)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce * cutHeight);
+
+            }
+
         }
         if (jumpBuffer > 0 && groundedRemember > 0) //pokud 0.2
         {
@@ -122,5 +148,70 @@ public class PlayerControllerX : MonoBehaviour
         isFlippedRight = !isFlippedRight;
         transform.Rotate(0f, 180f, 0f);
     }
+    //pøesune se do jiného scriptu
+
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        Debug.Log(collider.gameObject.name);
+        Time.timeScale = 1;
+        Debug.Log("Ahoj");
+        switch (collider.gameObject.tag)
+        {
+            case "PickUp":
+                inRange = PlayerActions.PickUp;
+                PickUp = collider.gameObject;
+                break;
+            //case "PickDown":
+            //GameOver();
+            //break;
+            case "Water":
+                Debug.Log("AU");
+                qc._questionMenu.SetActive(false);
+                _gameManager.GameOver();
+                break;
+            default:
+                break;
+        }
+        /*if (collider.gameObject.CompareTag("Pickup"))
+        {
+
+            PickUp = collider.gameObject;
+            //clck.gameObject.SetActive(true);
+            SeeQuestion(collider);
+            //SeeQuestion(_numberOfQuestion);
+            //bool answered = cont.SeeQuestion();
+            //GameScore(collider, true);
+        }*/
+
+    }
+    private void OnTriggerExit2D(Collider2D collider)
+    {
+        switch (collider.gameObject.tag)
+        {
+            case "PickUp":
+                inRange = PlayerActions.None;
+                break;
+            default:
+                break;
+        }
+    }
+    void OnDrawGizmosSelected()
+    {
+
+        // Draw a yellow cube at the transform position
+        if (isGrounded)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+        }
+        else
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+        }
+
+    }
+
 }
 
