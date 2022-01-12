@@ -32,6 +32,7 @@ public class PlayerControllerX : MonoBehaviour
     private QuestionController qc;
     private GameManager _gameManager;
     private PlayerActions inRange = PlayerActions.None;
+    private BoxCollider2D bc;
 
     
 
@@ -42,14 +43,15 @@ public class PlayerControllerX : MonoBehaviour
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         qc = GameObject.Find("Canvas").GetComponent<QuestionController>();
         rb = GetComponent<Rigidbody2D>();
-      
+        bc = GetComponent<BoxCollider2D>();
+        
     }
 
     private void Update()
     {
         if (inRange == PlayerActions.PickUp)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.E))
             {
 
                 qc.SeeQuestion(PickUp.GetComponent<Collider2D>(), PickUp);
@@ -60,6 +62,12 @@ public class PlayerControllerX : MonoBehaviour
             horizontalX = Input.GetAxisRaw("Horizontal");
             Jump();
         }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            _gameManager.PauseGame();
+            
+        }
+        
 
     }
     private void FixedUpdate()
@@ -167,9 +175,12 @@ public class PlayerControllerX : MonoBehaviour
             //GameOver();
             //break;
             case "Water":
-                Debug.Log("AU");
                 qc._questionMenu.SetActive(false);
+                bc.isTrigger = true;
                 _gameManager.GameOver();
+                break;
+            case "NextLevel":
+                _gameManager.NextScene();
                 break;
             default:
                 break;
