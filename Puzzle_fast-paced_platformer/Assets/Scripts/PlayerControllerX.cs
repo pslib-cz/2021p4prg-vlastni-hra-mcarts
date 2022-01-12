@@ -42,6 +42,7 @@ public class PlayerControllerX : MonoBehaviour
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         qc = GameObject.Find("Canvas").GetComponent<QuestionController>();
         rb = GetComponent<Rigidbody2D>();
+      
     }
 
     private void Update()

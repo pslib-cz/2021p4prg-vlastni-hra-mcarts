@@ -17,26 +17,30 @@ public class QuestionController : MonoBehaviour
     [SerializeField] int _numberOfQuestion = 0;
     [SerializeField] TextMeshProUGUI _questionText;
     Question _questionList;
+    OpenDoors od;
 
     [SerializeField] int _power = 0;
+    [SerializeField] List<GameObject> _doors;
+    [SerializeField] List<GameObject> _consoles;
 
     Question qs;
     void Start()
     {
         _questionMenu.SetActive(false);
         qs = new Question();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        od = GetComponentInChildren<OpenDoors>();
     }
     public void SeeQuestion(Collider2D collider, GameObject a)
     {
-        _pickUp = a;
+        _pickUp = a;//.GetComponentInChildren();
         _questionMenu.SetActive(true);
-        
+         
         if (_numberOfQuestion > (qs.Questions.Count - 1))
         {
             _numberOfQuestion = 0;
@@ -50,22 +54,21 @@ public class QuestionController : MonoBehaviour
     }
     public void ClickChoice(string choice)
     {
+        bool correctAnswer = false;
         switch (choice)
         {
             case "A":
                 string answerA = qs.Questions[_numberOfQuestion].ChoiceA;
                 if (answerA == qs.Questions[_numberOfQuestion].CorrectChoice)
                 {
-                    _pickUp.SetActive(false);
-                    _power++;
+                    correctAnswer = true;
                 }
                 break;
             case "B":
                 string answerB = qs.Questions[_numberOfQuestion].ChoiceB;
                 if (answerB == qs.Questions[_numberOfQuestion].CorrectChoice)
                 {
-                    _pickUp.SetActive(false);
-                    _power++;
+                    correctAnswer = true;
                 }
                 break;
             case "C":
@@ -73,18 +76,24 @@ public class QuestionController : MonoBehaviour
                 //string correct = questionList[_numberOfQuestion].CorrectChoice;
                 if (answerC == qs.Questions[_numberOfQuestion].CorrectChoice)
                 {
-                    _pickUp.SetActive(false);
-                    _power++;
+                    correctAnswer = true;
                 }
                 break;
             case "D":
                 string answerD = qs.Questions[_numberOfQuestion].ChoiceD;
                 if (answerD == qs.Questions[_numberOfQuestion].CorrectChoice)
                 {
-                    _pickUp.SetActive(false);
-                    _power++;
+                    correctAnswer = true;
                 }
                 break;
+        }
+        if (correctAnswer)
+        {
+            _pickUp .SetActive(false);
+            _power++;
+            var ahoj = _pickUp.GetComponentInChildren<GameObject>();
+            od.OpenDoor();
+            od = null;
         }
         _questionMenu.SetActive(false);
         
