@@ -168,8 +168,17 @@ public class PlayerControllerX : MonoBehaviour
         switch (collider.gameObject.tag)
         {
             case "PickUp":
-                inRange = PlayerActions.PickUp;
                 PickUp = collider.gameObject;
+                if(PickUp.GetComponent<Animator>().GetBool("IsTriggered") == false)
+                {
+                    inRange = PlayerActions.PickUp;
+
+                }
+                else
+                {
+                    inRange = PlayerActions.None;
+                }
+                
                 break;
             //case "PickDown":
             //GameOver();

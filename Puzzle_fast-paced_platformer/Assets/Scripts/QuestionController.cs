@@ -91,8 +91,10 @@ public class QuestionController : MonoBehaviour
         }
         if(doesItWork == true)
         {
-            _pickUp.SetActive(false);
+            _pickUp.GetComponent<Animator>().SetBool("IsTriggered", true);
             int index = _consoles.IndexOf(_pickUp);
+            if(index < 0 || index == null)
+                index = 0;
             _doors[index].GetComponent<Animator>().SetTrigger("TriggerOpen");
             _doors[index].GetComponent<BoxCollider2D>().enabled = false;
             doesItWork = false;
