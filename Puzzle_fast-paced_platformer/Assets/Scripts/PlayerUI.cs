@@ -23,7 +23,8 @@ public class PlayerUI : MonoBehaviour
     void Update()
     {
         int number = (int)sr.gameObject.transform.position.y;
-        int score = Int32.Parse(_score.text);
+        int score = int.Parse(_score.text);
+        
         if(number > score)
         {
             _score.text = number.ToString();

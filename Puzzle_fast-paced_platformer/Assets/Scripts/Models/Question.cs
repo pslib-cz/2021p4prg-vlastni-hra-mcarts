@@ -12,7 +12,7 @@ namespace Assets.Scripts.Models
         public Question() //"inicializace"
         {
             Questions = new List<QuestionObject>();
-            Questions.Add(new QuestionObject { QuestionText = "Kolik barev má česká lajka.", ChoiceA = "1", ChoiceB = "2", ChoiceC = "3", ChoiceD = "4", CorrectChoice = "3" });
+            Questions.Add(new QuestionObject { QuestionText = "Kolik barev má česká vlajka?", ChoiceA = "1", ChoiceB = "2", ChoiceC = "3", ChoiceD = "4", CorrectChoice = "3" });
             Questions.Add(new QuestionObject { QuestionText = "3 + 3?", ChoiceA = "5", ChoiceB = "7?", ChoiceC = "9", ChoiceD = "6", CorrectChoice = "6" });
             Questions.Add(new QuestionObject { QuestionText = "Kdo je nejvyšší?", ChoiceA = "Lenovo", ChoiceB = "HP", ChoiceC = "Mount Everest", ChoiceD = "Xiaomi", CorrectChoice = "Mount Everest" });
             Questions.Add(new QuestionObject { QuestionText = "Kdo je největší výrobce počítačů?", ChoiceA = "Dell", ChoiceB = "Lenovo", ChoiceC = "Xiaomi", ChoiceD = "Samsung", CorrectChoice = "Mount Everest" });
